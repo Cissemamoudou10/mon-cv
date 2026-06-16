@@ -24,7 +24,7 @@ const PRODUCTS = [
     id: 1,
     name: "Sérum Équilibrant",
     type: "Visage",
-    desc: "Huile légère aux actifs botaniques pour une peau apaisée et lumineuse.",
+    desc: "Sérum concentré aux actifs coréens pour une peau apaisée et lumineuse.",
     price: "29 000 FCFA",
     img: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80",
   },
@@ -71,8 +71,49 @@ const PRODUCTS = [
 ];
 
 const MARQUEE = [
-  "Néroli", "Argan", "Rose de Damas", "Cèdre", "Vétiver",
-  "Camomille", "Bergamote", "Santal", "Lavande", "Géranium",
+  "Centella", "Acide hyaluronique", "Niacinamide", "Ginseng", "Mucine d'escargot",
+  "Thé vert", "Riz fermenté", "Propolis", "Rétinol", "Vitamine C",
+];
+
+// Préoccupations (entrée visuelle sur l'accueil)
+const CONCERNS = [
+  { title: "Hydratation & confort", img: "1556228720-195a672e8a03" },
+  { title: "Éclat & teint terne", img: "1620916566398-39f1143ab7be" },
+  { title: "Imperfections & pores", img: "1612817288484-6f916006741a" },
+  { title: "Anti-âge", img: "1571781926291-c477ebfd024b" },
+];
+
+// Nouveautés
+const NEW_PRODUCTS = [
+  { id: "n1", name: "Essence Lumière", type: "Visage", price: "32 000 FCFA", img: "1556228453-efd6c1ff04f6" },
+  { id: "n2", name: "Masque Nuit Réparateur", type: "Visage", price: "27 000 FCFA", img: "1608248597279-f99d160bfcbc" },
+  { id: "n3", name: "Huile Précieuse Corps", type: "Corps", price: "30 000 FCFA", img: "1601049541289-9b1b7bbbfe19" },
+  { id: "n4", name: "Brume Cheveux Légère", type: "Cheveux", price: "19 000 FCFA", img: "1608248543803-ba4f8c70ae0b" },
+];
+
+// Best-sellers
+const BEST_SELLERS = [
+  { id: "b1", name: "Sérum Équilibrant", type: "Visage", price: "29 000 FCFA", img: "1556228720-195a672e8a03" },
+  { id: "b2", name: "Tonique Rose Pure", type: "Visage", price: "21 000 FCFA", img: "1620916566398-39f1143ab7be" },
+  { id: "b3", name: "Baume Corps Néroli", type: "Corps", price: "24 000 FCFA", img: "1556228578-8c89e6adf883" },
+  { id: "b4", name: "Gommage Sel & Menthe", type: "Corps", price: "18 500 FCFA", img: "1612817288484-6f916006741a" },
+];
+
+// Marques partenaires (modèle hybride)
+const PARTNER_BRANDS = ["Hanbit", "Seoul Dew", "Pure Seoul", "Goyo", "Hanok", "Dami"];
+
+// Avis clients
+const REVIEWS = [
+  { name: "Aïssata D.", city: "Bamako", text: "Une qualité que je n'avais jamais trouvée localement. Le sérum a transformé ma peau en quelques semaines." },
+  { name: "Fanta K.", city: "Bamako", text: "Conseil parfait via WhatsApp, livraison rapide. L'expérience est aussi soignée que les produits." },
+  { name: "Mariam T.", city: "Kati", text: "J'adore la philosophie de la marque. Des soins simples, efficaces, avec de vraies matières." },
+];
+
+// Journal / articles
+const ARTICLES = [
+  { title: "Construire sa routine en 4 gestes", cat: "Conseils", img: "1556228578-8c89e6adf883" },
+  { title: "Le néroli, fleur d'exception", cat: "Ingrédients", img: "1620916566398-39f1143ab7be" },
+  { title: "Adopter le rituel du soir", cat: "Rituels", img: "1556228720-195a672e8a03" },
 ];
 
 // ============================================================
@@ -114,34 +155,142 @@ function Reveal({ children, delay = 0, style = {} }) {
 }
 
 // ============================================================
-//  HEADER
+//  HEADER  — logo à gauche, nav multi-volets (desktop),
+//            bouton menu (mobile uniquement)
 // ============================================================
+// Structure de navigation à plusieurs volets, avec sous-menus illustrés (mega-menu).
+// Chaque volet peut porter des vignettes "feature" illustrant une entrée.
+const NAV = [
+  {
+    label: "Préoccupations",
+    sub: ["Hydratation & confort", "Éclat & teint terne", "Imperfections & pores", "Anti-âge", "Sensibilité & rougeurs", "Soin du regard"],
+    feature: [
+      { title: "Hydratation & confort", img: "1556228720-195a672e8a03" },
+      { title: "Éclat & teint terne", img: "1620916566398-39f1143ab7be" },
+    ],
+  },
+  {
+    label: "Soins",
+    sub: ["Nettoyants", "Toniques & brumes", "Sérums & ampoules", "Crèmes & hydratants", "Exfoliants & masques", "Solaires"],
+    feature: [
+      { title: "Sérums & ampoules", img: "1608248543803-ba4f8c70ae0b" },
+      { title: "Crèmes & hydratants", img: "1571781926291-c477ebfd024b" },
+    ],
+  },
+  {
+    label: "Corps & Cheveux",
+    sub: ["Gels & gommages corps", "Laits & crèmes corps", "Mains & pieds", "Shampoings & soins", "Huiles capillaires"],
+    feature: [
+      { title: "Laits & crèmes corps", img: "1601049541289-9b1b7bbbfe19" },
+      { title: "Huiles capillaires", img: "1612817288484-6f916006741a" },
+    ],
+  },
+  {
+    label: "Marques",
+    sub: ["Mira", "Marques partenaires", "Nouveautés", "Best-sellers"],
+    feature: [
+      { title: "La marque Mira", img: "1556228578-8c89e6adf883" },
+      { title: "Nouveautés", img: "1580870069867-74c57ee1bb07" },
+    ],
+  },
+  { label: "Histoire", sub: null },
+  { label: "Contact", sub: null },
+];
+
+function NavItem({ item, alignRight }) {
+  const [open, setOpen] = useState(false);
+  const hasSub = !!item.sub;
+  const hasFeature = !!item.feature;
+  // Les volets larges proches du bord droit s'alignent à droite pour ne pas déborder.
+  const wide = hasFeature && alignRight;
+  return (
+    <div
+      style={{ position: "relative" }}
+      onMouseEnter={() => hasSub && setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <a href="#" style={{
+        fontFamily: SANS, fontSize: 11, letterSpacing: "0.16em",
+        textTransform: "uppercase", color: C.ink, textDecoration: "none",
+        display: "inline-flex", alignItems: "center", gap: 6, padding: "6px 0",
+        whiteSpace: "nowrap",
+      }}>
+        {item.label}
+        {hasSub && <span style={{
+          fontSize: 8, color: C.gold,
+          transform: open ? "rotate(180deg)" : "rotate(0)",
+          transition: "transform .3s ease",
+        }}>▾</span>}
+      </a>
+      {hasSub && (
+        <div style={{
+          position: "absolute", top: "100%",
+          left: wide ? "auto" : "50%",
+          right: wide ? 0 : "auto",
+          transform: wide
+            ? (open ? "translateY(0)" : "translateY(8px)")
+            : (open ? "translate(-50%,0)" : "translate(-50%,8px)"),
+          background: C.cream,
+          border: `1px solid ${C.line}`, padding: hasFeature ? 22 : "14px 0",
+          opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none",
+          transition: "all .3s ease", boxShadow: "0 18px 50px rgba(10,10,10,0.08)",
+          display: hasFeature ? "grid" : "block",
+          gridTemplateColumns: hasFeature ? "auto auto" : "none",
+          gap: hasFeature ? 26 : 0,
+        }}>
+          {/* Colonne des liens */}
+          <div style={{ display: "flex", flexDirection: "column", minWidth: 200, justifyContent: "center" }}>
+            {item.sub.map((s) => (
+              <a key={s} href="#" style={{
+                display: "block", padding: hasFeature ? "8px 8px" : "9px 24px",
+                fontFamily: BODY, fontSize: 15, color: C.grey, textDecoration: "none",
+                whiteSpace: "nowrap", transition: "color .2s ease",
+              }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = C.ink; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = C.grey; }}
+              >{s}</a>
+            ))}
+          </div>
+          {/* Colonne des vignettes illustratives */}
+          {hasFeature && (
+            <div style={{ display: "flex", gap: 14 }}>
+              {item.feature.map((f) => (
+                <a key={f.title} href="#" style={{ textDecoration: "none", display: "block", width: 150 }}>
+                  <div style={{
+                    width: 150, height: 110, overflow: "hidden", marginBottom: 8, background: C.white,
+                  }}>
+                    <img src={`https://images.unsplash.com/photo-${f.img}?w=320&q=70`} alt=""
+                      style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </div>
+                  <span style={{
+                    fontFamily: SANS, fontSize: 10, letterSpacing: "0.1em",
+                    textTransform: "uppercase", color: C.ink,
+                  }}>{f.title}</span>
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function Header({ onMenu, solid }) {
   return (
     <header
       style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: solid ? "16px 40px" : "26px 40px",
+        padding: solid ? "14px 40px" : "22px 40px",
         background: solid ? "rgba(250,248,244,0.92)" : "transparent",
         backdropFilter: solid ? "blur(10px)" : "none",
         borderBottom: solid ? `1px solid ${C.line}` : "1px solid transparent",
         transition: "all .5s ease",
       }}
     >
-      <button onClick={onMenu} style={{
-        background: "none", border: "none", cursor: "pointer",
-        fontFamily: SANS, fontSize: 11, letterSpacing: "0.18em",
-        textTransform: "uppercase", color: C.ink,
-      }}>
-        ☰&nbsp;&nbsp;Menu
-      </button>
-
-      {/* NOM DE MARQUE — remplaçable par votre image de logo */}
-      <div style={{
-        display: "flex", flexDirection: "column", alignItems: "center",
-        lineHeight: 1,
-      }}>
+      {/* LOGO À GAUCHE — remplaçable par votre image de logo */}
+      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
         <span style={{
           fontFamily: SERIF, fontSize: 25, fontWeight: 500, color: C.ink,
           letterSpacing: "0.04em",
@@ -152,22 +301,29 @@ function Header({ onMenu, solid }) {
         }}>Skin Care</span>
       </div>
 
-      <nav style={{ display: "flex", gap: 28 }}>
-        {["Boutique", "Histoire", "Contact"].map((l) => (
-          <a key={l} href="#" style={{
-            fontFamily: SANS, fontSize: 11, letterSpacing: "0.18em",
-            textTransform: "uppercase", color: C.ink, textDecoration: "none",
-          }}>{l}</a>
-        ))}
+      {/* NAV MULTI-VOLETS — desktop uniquement */}
+      <nav className="nav-desktop" style={{ display: "flex", gap: 30, alignItems: "center" }}>
+        {NAV.map((item, i) => <NavItem key={item.label} item={item} alignRight={i >= 3} />)}
       </nav>
+
+      {/* BOUTON MENU — mobile uniquement */}
+      <button onClick={onMenu} className="nav-burger" style={{
+        background: "none", border: "none", cursor: "pointer",
+        fontFamily: SANS, fontSize: 11, letterSpacing: "0.18em",
+        textTransform: "uppercase", color: C.ink, display: "none",
+        alignItems: "center", gap: 8,
+      }}>
+        Menu&nbsp;&nbsp;☰
+      </button>
     </header>
   );
 }
 
 // ============================================================
-//  PANNEAU LATÉRAL (menu qui glisse)
+//  PANNEAU LATÉRAL (menu mobile qui glisse depuis la DROITE)
 // ============================================================
 function SidePanel({ open, onClose }) {
+  const [openIdx, setOpenIdx] = useState(-1);
   return (
     <>
       <div onClick={onClose} style={{
@@ -177,27 +333,58 @@ function SidePanel({ open, onClose }) {
         transition: "opacity .5s ease",
       }} />
       <aside style={{
-        position: "fixed", top: 0, left: 0, bottom: 0, width: 360, maxWidth: "85vw",
-        zIndex: 70, background: C.cream, padding: "40px 36px",
-        transform: open ? "translateX(0)" : "translateX(-100%)",
+        position: "fixed", top: 0, right: 0, bottom: 0, width: 360, maxWidth: "85vw",
+        zIndex: 70, background: C.cream, padding: "32px 30px",
+        transform: open ? "translateX(0)" : "translateX(100%)",
         transition: "transform .55s cubic-bezier(.4,0,.2,1)",
-        display: "flex", flexDirection: "column",
+        display: "flex", flexDirection: "column", overflowY: "auto",
       }}>
         <button onClick={onClose} style={{
-          alignSelf: "flex-start", background: "none", border: "none",
+          alignSelf: "flex-end", background: "none", border: "none",
           cursor: "pointer", fontFamily: SANS, fontSize: 11,
           letterSpacing: "0.18em", textTransform: "uppercase", color: C.ink,
-          marginBottom: 60,
-        }}>✕&nbsp;&nbsp;Fermer</button>
+          marginBottom: 40,
+        }}>Fermer&nbsp;&nbsp;✕</button>
 
-        <nav style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          {["Tous les soins", "Visage", "Corps", "Cheveux", "Notre histoire", "Contact"].map((l, i) => (
-            <a key={l} href="#" style={{
-              fontFamily: SERIF, fontSize: 32, fontWeight: 500,
-              color: C.ink, textDecoration: "none", padding: "8px 0",
-              borderBottom: i < 5 ? `1px solid ${C.line}` : "none",
-            }}>{l}</a>
-          ))}
+        <nav style={{ display: "flex", flexDirection: "column" }}>
+          {NAV.map((item, i) => {
+            const isOpen = openIdx === i;
+            const hasSub = !!item.sub;
+            return (
+              <div key={item.label} style={{ borderBottom: `1px solid ${C.line}` }}>
+                <button
+                  onClick={() => hasSub ? setOpenIdx(isOpen ? -1 : i) : onClose()}
+                  style={{
+                    width: "100%", display: "flex", justifyContent: "space-between",
+                    alignItems: "center", padding: "16px 0", background: "none",
+                    border: "none", cursor: "pointer", textAlign: "left",
+                    fontFamily: SERIF, fontSize: 26, fontWeight: 500, color: C.ink,
+                  }}
+                >
+                  {item.label}
+                  {hasSub && <span style={{
+                    fontFamily: SERIF, fontSize: 22, color: C.gold,
+                    transform: isOpen ? "rotate(45deg)" : "rotate(0)",
+                    transition: "transform .3s ease",
+                  }}>+</span>}
+                </button>
+                {hasSub && (
+                  <div style={{
+                    maxHeight: isOpen ? item.sub.length * 46 : 0, overflow: "hidden",
+                    transition: "max-height .4s ease",
+                  }}>
+                    {item.sub.map((s) => (
+                      <a key={s} href="#" style={{
+                        display: "block", padding: "10px 0 10px 14px",
+                        fontFamily: BODY, fontSize: 16, color: C.grey, textDecoration: "none",
+                      }}>{s}</a>
+                    ))}
+                    <div style={{ height: 8 }} />
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
       </aside>
     </>
@@ -262,7 +449,7 @@ function Hero() {
         <p style={{
           fontFamily: SANS, fontSize: 11, letterSpacing: "0.3em",
           textTransform: "uppercase", marginBottom: 24, opacity: 0.9,
-        }}>Soins formulés avec intention</p>
+        }}>Beauté coréenne · K-Beauty</p>
         <h1 style={{
           fontFamily: SERIF, fontWeight: 500, fontSize: "clamp(44px, 8vw, 104px)",
           lineHeight: 1.02, margin: 0, letterSpacing: "-0.01em",
@@ -271,11 +458,10 @@ function Hero() {
           <span style={{ fontStyle: "italic" }}>magnifié</span>
         </h1>
         <p style={{
-          fontFamily: BODY, fontSize: 18, maxWidth: 440, margin: "28px auto 36px",
+          fontFamily: BODY, fontSize: 18, maxWidth: 460, margin: "28px auto 36px",
           lineHeight: 1.6, opacity: 0.92,
         }}>
-          Une collection de soins pour la peau, le corps et les cheveux,
-          composée des plus belles matières botaniques.
+          La beauté coréenne au service de votre éclat naturel.
         </p>
         <Button variant="dark">Découvrir la collection</Button>
       </div>
@@ -475,15 +661,22 @@ function Editorial() {
             fontFamily: SERIF, fontSize: "clamp(30px,3.4vw,46px)", fontWeight: 500,
             lineHeight: 1.15, margin: "0 0 24px",
           }}>
-            Le soin comme<br /><span style={{ fontStyle: "italic" }}>un rituel</span>
+            L'expertise coréenne,<br /><span style={{ fontStyle: "italic" }}>au service de votre peau</span>
           </h2>
           <p style={{
             fontFamily: BODY, fontSize: 17, lineHeight: 1.7, color: "#C9C4BA",
-            maxWidth: 420, marginBottom: 32,
+            maxWidth: 440, marginBottom: 24,
           }}>
-            Chaque formule naît d'une recherche patiente des meilleures matières
-            botaniques. Nous croyons en des gestes simples, répétés avec attention —
-            là où naît la vraie beauté.
+            Mira Skin Care est une boutique spécialisée dans les soins coréens (K-Beauty) :
+            nettoyants, sérums, crèmes hydratantes, masques, protections solaires et
+            traitements ciblés, formulés avec des ingrédients innovants.
+          </p>
+          <p style={{
+            fontFamily: BODY, fontSize: 17, lineHeight: 1.7, color: "#C9C4BA",
+            maxWidth: 440, marginBottom: 32,
+          }}>
+            Notre mission : aider chacun à révéler une peau saine, éclatante et
+            naturellement belle, grâce à des soins de qualité adaptés à tous les types de peau.
           </p>
           <TextLinkLight>Lire notre histoire</TextLinkLight>
         </Reveal>
@@ -599,7 +792,7 @@ function ProductModal({ product, onClose }) {
                 <Accordion key={t} title={t} open={openAcc === i}
                   onToggle={() => setOpenAcc(openAcc === i ? -1 : i)}>
                   {i === 0 && "Une formule concentrée, pensée pour s'intégrer naturellement à votre rituel quotidien."}
-                  {i === 1 && "Extraits botaniques, huiles essentielles pures, sans additifs superflus."}
+                  {i === 1 && "Actifs coréens innovants : acide hyaluronique, centella, niacinamide, sans additifs superflus."}
                   {i === 2 && "Appliquer matin et soir sur peau propre, en massant délicatement."}
                 </Accordion>
               ))}
@@ -634,7 +827,7 @@ function Footer() {
           </div>
           <p style={{
             fontFamily: BODY, fontSize: 15, lineHeight: 1.6, color: C.grey, maxWidth: 280,
-          }}>Soins botaniques formulés avec intention. Conçus au Mali, à Bamako.</p>
+          }}>La beauté coréenne au service de votre éclat naturel. Bamako, Mali.</p>
         </div>
         {[
           { h: "Boutique", l: ["Visage", "Corps", "Cheveux"] },
@@ -807,6 +1000,37 @@ function ToastDemo() {
   );
 }
 
+// Pagination
+function Pagination() {
+  const [page, setPage] = useState(1);
+  const total = 5;
+  const arrow = (dir, disabled) => ({
+    fontFamily: SERIF, fontSize: 20, color: disabled ? C.line : C.ink,
+    background: "none", border: "none", cursor: disabled ? "default" : "pointer",
+    padding: "0 6px",
+  });
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+      <button style={arrow("prev", page === 1)} disabled={page === 1}
+        onClick={() => setPage((p) => Math.max(1, p - 1))}>←</button>
+      {Array.from({ length: total }, (_, i) => i + 1).map((n) => {
+        const on = n === page;
+        return (
+          <button key={n} onClick={() => setPage(n)} style={{
+            width: 38, height: 38, cursor: "pointer",
+            fontFamily: SANS, fontSize: 13, letterSpacing: "0.05em",
+            border: `1px solid ${on ? C.ink : "transparent"}`,
+            background: on ? C.ink : "transparent",
+            color: on ? C.cream : C.ink, transition: "all .25s ease",
+          }}>{n}</button>
+        );
+      })}
+      <button style={arrow("next", page === total)} disabled={page === total}
+        onClick={() => setPage((p) => Math.min(total, p + 1))}>→</button>
+    </div>
+  );
+}
+
 // ============================================================
 //  CATALOGUE DE COMPOSANTS
 // ============================================================
@@ -877,7 +1101,268 @@ function ComponentCatalog({ onModal }) {
             </div>
           </div>
         </ComponentItem></Reveal>
+        <Reveal><ComponentItem label="Pagination"><Pagination /></ComponentItem></Reveal>
       </div>
+    </section>
+  );
+}
+
+// ============================================================
+//  NOUVELLES SECTIONS DE PAGE
+// ============================================================
+
+// En-tête de section réutilisable
+function SectionHead({ eyebrow, title, sub, light }) {
+  return (
+    <div style={{ textAlign: "center", marginBottom: 56 }}>
+      <p style={{
+        fontFamily: SANS, fontSize: 11, letterSpacing: "0.3em",
+        textTransform: "uppercase", color: C.gold, marginBottom: 16,
+      }}>{eyebrow}</p>
+      <h2 style={{
+        fontFamily: SERIF, fontSize: "clamp(30px,4.5vw,50px)", fontWeight: 500,
+        margin: 0, color: light ? C.cream : C.ink,
+      }}>{title}</h2>
+      {sub && <p style={{
+        fontFamily: BODY, fontSize: 17, color: light ? "#C9C4BA" : C.grey, marginTop: 14,
+        maxWidth: 460, marginLeft: "auto", marginRight: "auto", lineHeight: 1.6,
+      }}>{sub}</p>}
+    </div>
+  );
+}
+
+// 1 — Bande de réassurance
+function Reassurance() {
+  const items = [
+    { t: "Livraison à Bamako", d: "Sous 24 à 48 h, et partout au Mali." },
+    { t: "Conseil personnalisé", d: "Échangez avec nous sur WhatsApp." },
+    { t: "Paiement à la livraison", d: "Réglez en toute confiance, à réception." },
+  ];
+  return (
+    <section style={{ background: C.white, borderBottom: `1px solid ${C.line}`, padding: "44px 40px" }}>
+      <div style={{
+        maxWidth: 1100, margin: "0 auto", display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 30,
+      }}>
+        {items.map((it) => (
+          <div key={it.t} style={{ textAlign: "center" }}>
+            <p style={{ color: C.gold, fontSize: 18, marginBottom: 10 }}>✦</p>
+            <p style={{
+              fontFamily: SANS, fontSize: 12, letterSpacing: "0.14em",
+              textTransform: "uppercase", color: C.ink, marginBottom: 6,
+            }}>{it.t}</p>
+            <p style={{ fontFamily: BODY, fontSize: 15, color: C.grey, lineHeight: 1.5 }}>{it.d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// 2 — Par préoccupation
+function Concerns() {
+  return (
+    <section style={{ padding: "100px 40px", background: C.cream }}>
+      <Reveal>
+        <SectionHead eyebrow="Par où commencer" title="Quel est votre besoin ?"
+          sub="Trouvez les soins adaptés à votre peau, selon ce qui compte pour vous." />
+      </Reveal>
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+        gap: 20, maxWidth: 1100, margin: "0 auto",
+      }}>
+        {CONCERNS.map((c, i) => (
+          <Reveal key={c.title} delay={(i % 4) * 0.08}>
+            <a href="#" style={{ textDecoration: "none", display: "block", position: "relative", overflow: "hidden" }}
+              onMouseEnter={(e) => { e.currentTarget.querySelector("img").style.transform = "scale(1.06)"; }}
+              onMouseLeave={(e) => { e.currentTarget.querySelector("img").style.transform = "scale(1)"; }}
+            >
+              <div style={{ aspectRatio: "4/5", overflow: "hidden", background: C.white }}>
+                <img src={`https://images.unsplash.com/photo-${c.img}?w=500&q=75`} alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 1s cubic-bezier(.2,0,.2,1)" }} />
+              </div>
+              <div style={{
+                position: "absolute", left: 0, right: 0, bottom: 0,
+                padding: "26px 20px 20px",
+                background: "linear-gradient(transparent, rgba(10,10,10,0.55))",
+              }}>
+                <span style={{
+                  fontFamily: SERIF, fontSize: 21, fontWeight: 500, color: C.cream,
+                }}>{c.title}</span>
+              </div>
+            </a>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// Mini-carte produit (pour carrousels nouveautés / best-sellers)
+function MiniCard({ p, badge }) {
+  const [hover, setHover] = useState(false);
+  return (
+    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ cursor: "pointer" }}>
+      <div style={{ position: "relative", overflow: "hidden", background: C.white, aspectRatio: "3/4", marginBottom: 14 }}>
+        {badge && <span style={{
+          position: "absolute", top: 12, left: 12, zIndex: 2,
+          fontFamily: SANS, fontSize: 9, letterSpacing: "0.14em", textTransform: "uppercase",
+          background: C.ink, color: C.cream, padding: "6px 12px",
+        }}>{badge}</span>}
+        <img src={`https://images.unsplash.com/photo-${p.img}?w=500&q=75`} alt={p.name}
+          style={{ width: "100%", height: "100%", objectFit: "cover",
+            transform: hover ? "scale(1.05)" : "scale(1)", transition: "transform 1.1s cubic-bezier(.2,0,.2,1)" }} />
+      </div>
+      <p style={{ fontFamily: SANS, fontSize: 10, letterSpacing: "0.18em", textTransform: "uppercase", color: C.gold, margin: "0 0 6px" }}>{p.type}</p>
+      <h3 style={{ fontFamily: SERIF, fontSize: 20, fontWeight: 500, margin: "0 0 6px", color: C.ink }}>{p.name}</h3>
+      <p style={{ fontFamily: SANS, fontSize: 13, color: C.ink }}>{p.price}</p>
+    </div>
+  );
+}
+
+// 3 — Nouveautés
+function NewArrivals() {
+  return (
+    <section style={{ padding: "100px 40px", background: C.white }}>
+      <Reveal><SectionHead eyebrow="Tout juste arrivés" title="Les nouveautés" /></Reveal>
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))",
+        gap: "44px 30px", maxWidth: 1100, margin: "0 auto",
+      }}>
+        {NEW_PRODUCTS.map((p, i) => (
+          <Reveal key={p.id} delay={(i % 4) * 0.08}><MiniCard p={p} badge="Nouveau" /></Reveal>
+        ))}
+      </div>
+      <div style={{ textAlign: "center", marginTop: 50 }}>
+        <Button variant="dark">Voir toutes les nouveautés</Button>
+      </div>
+    </section>
+  );
+}
+
+// 4 — Best-sellers
+function BestSellers() {
+  return (
+    <section style={{ padding: "100px 40px", background: C.cream }}>
+      <Reveal><SectionHead eyebrow="Les préférés" title="Best-sellers"
+        sub="Les soins plébiscités par notre clientèle." /></Reveal>
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(230px, 1fr))",
+        gap: "44px 30px", maxWidth: 1100, margin: "0 auto",
+      }}>
+        {BEST_SELLERS.map((p, i) => (
+          <Reveal key={p.id} delay={(i % 4) * 0.08}><MiniCard p={p} badge="Best-seller" /></Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// 5 — Marques partenaires
+function PartnerBrands() {
+  return (
+    <section style={{ padding: "90px 40px", background: C.white, borderTop: `1px solid ${C.line}` }}>
+      <Reveal><SectionHead eyebrow="Notre sélection" title="Les marques partenaires"
+        sub="Aux côtés de nos propres soins, une sélection exigeante de marques que nous aimons." /></Reveal>
+      <div style={{
+        maxWidth: 1000, margin: "0 auto", display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 1,
+        background: C.line, border: `1px solid ${C.line}`,
+      }}>
+        {PARTNER_BRANDS.map((b) => (
+          <div key={b} style={{
+            background: C.white, padding: "34px 16px", textAlign: "center",
+            display: "flex", alignItems: "center", justifyContent: "center", minHeight: 90,
+          }}>
+            <span style={{ fontFamily: SERIF, fontSize: 22, color: C.ink, letterSpacing: "0.02em" }}>{b.trim()}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// 6 — Avis clients
+function Reviews() {
+  return (
+    <section style={{ padding: "100px 40px", background: C.ink }}>
+      <Reveal><SectionHead eyebrow="Témoignages" title="Ce qu'elles en disent" light /></Reveal>
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: 30, maxWidth: 1100, margin: "0 auto",
+      }}>
+        {REVIEWS.map((r, i) => (
+          <Reveal key={r.name} delay={(i % 3) * 0.1}>
+            <div style={{ border: `1px solid rgba(255,255,255,0.14)`, padding: "34px 30px", height: "100%" }}>
+              <p style={{ color: C.gold, fontSize: 16, marginBottom: 16, letterSpacing: "0.3em" }}>★★★★★</p>
+              <p style={{
+                fontFamily: SERIF, fontSize: 19, fontStyle: "italic", lineHeight: 1.5,
+                color: C.cream, marginBottom: 22,
+              }}>« {r.text} »</p>
+              <p style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: "#C9C4BA" }}>
+                {r.name} — {r.city}
+              </p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// 7 — Journal / blog
+function Journal() {
+  return (
+    <section style={{ padding: "100px 40px", background: C.cream }}>
+      <Reveal><SectionHead eyebrow="Le journal" title="Conseils & rituels"
+        sub="Nos gestes, nos ingrédients, nos inspirations pour prendre soin de soi." /></Reveal>
+      <div style={{
+        display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+        gap: 34, maxWidth: 1100, margin: "0 auto",
+      }}>
+        {ARTICLES.map((a, i) => (
+          <Reveal key={a.title} delay={(i % 3) * 0.1}>
+            <a href="#" style={{ textDecoration: "none", display: "block" }}
+              onMouseEnter={(e) => { e.currentTarget.querySelector("img").style.transform = "scale(1.05)"; }}
+              onMouseLeave={(e) => { e.currentTarget.querySelector("img").style.transform = "scale(1)"; }}
+            >
+              <div style={{ aspectRatio: "3/2", overflow: "hidden", background: C.white, marginBottom: 18 }}>
+                <img src={`https://images.unsplash.com/photo-${a.img}?w=600&q=75`} alt=""
+                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 1s cubic-bezier(.2,0,.2,1)" }} />
+              </div>
+              <p style={{ fontFamily: SANS, fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: C.gold, margin: "0 0 10px" }}>{a.cat}</p>
+              <h3 style={{ fontFamily: SERIF, fontSize: 24, fontWeight: 500, color: C.ink, margin: "0 0 12px", lineHeight: 1.25 }}>{a.title}</h3>
+              <span style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", color: C.ink, borderBottom: `1px solid ${C.gold}`, paddingBottom: 3 }}>Lire l'article</span>
+            </a>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// 8 — Newsletter ancrée
+function NewsletterBand() {
+  return (
+    <section style={{ padding: "90px 40px", background: C.white, borderTop: `1px solid ${C.line}` }}>
+      <Reveal>
+        <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
+          <p style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.3em", textTransform: "uppercase", color: C.gold, marginBottom: 16 }}>Rejoignez-nous</p>
+          <h2 style={{ fontFamily: SERIF, fontSize: "clamp(28px,4vw,42px)", fontWeight: 500, color: C.ink, margin: "0 0 16px" }}>Restons en contact</h2>
+          <p style={{ fontFamily: BODY, fontSize: 17, color: C.grey, lineHeight: 1.6, marginBottom: 30 }}>
+            Recevez nos nouveautés et conseils de soin, avec discrétion. Aucun envoi superflu.
+          </p>
+          <div style={{ display: "flex", gap: 14, flexWrap: "wrap", justifyContent: "center", alignItems: "flex-end" }}>
+            <div style={{ flex: "1 1 280px", borderBottom: `1px solid ${C.line}`, paddingBottom: 6 }}>
+              <input placeholder="Votre adresse e-mail" style={{
+                width: "100%", border: "none", outline: "none", background: "transparent",
+                fontFamily: BODY, fontSize: 16, color: C.ink, padding: "8px 0", textAlign: "center",
+              }} />
+            </div>
+            <Button variant="solid">S'inscrire</Button>
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -964,6 +1449,10 @@ export default function App() {
         * { box-sizing: border-box; margin: 0; }
         body { margin: 0; }
         ::selection { background: ${C.gold}; color: ${C.cream}; }
+        @media (max-width: 1024px) {
+          .nav-desktop { display: none !important; }
+          .nav-burger { display: inline-flex !important; }
+        }
         @media (max-width: 860px) {
           .editorial { grid-template-columns: 1fr !important; }
           .modal-grid { grid-template-columns: 1fr !important; }
@@ -979,9 +1468,17 @@ export default function App() {
       <SidePanel open={menu} onClose={() => setMenu(false)} />
       <Hero />
       <Marquee />
+      <Reassurance />
+      <Concerns />
       <Collection onOpen={setProduct} />
+      <NewArrivals />
       <Editorial />
+      <BestSellers />
+      <PartnerBrands />
+      <Reviews />
+      <Journal />
       <ComponentCatalog onModal={() => setModalOpen(true)} />
+      <NewsletterBand />
 
       <Footer />
       <ProductModal product={product} onClose={() => setProduct(null)} />
