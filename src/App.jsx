@@ -22,7 +22,7 @@ const SANS = "'Inter', -apple-system, sans-serif";
 const PRODUCTS = [
   {
     id: 1,
-    name: "Sérum Équilibrant",
+    name: "Sérum Centella Apaisant",
     type: "Visage",
     desc: "Sérum concentré aux actifs coréens pour une peau apaisée et lumineuse.",
     price: "29 000 FCFA",
@@ -30,41 +30,41 @@ const PRODUCTS = [
   },
   {
     id: 2,
-    name: "Baume Corps Néroli",
-    type: "Corps",
-    desc: "Texture fondante nourrissante, parfum subtil de fleur d'oranger.",
+    name: "Crème Riz Fermenté",
+    type: "Visage",
+    desc: "Texture fondante nourrissante, éclat et confort immédiat.",
     price: "24 000 FCFA",
     img: "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?w=900&q=80",
   },
   {
     id: 3,
-    name: "Huile Capillaire Argan",
-    type: "Cheveux",
-    desc: "Soin réparateur sans rinçage, brillance et discipline.",
+    name: "Essence Ginseng",
+    type: "Visage",
+    desc: "Essence revitalisante, fermeté et lumière jour après jour.",
     price: "25 500 FCFA",
     img: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=900&q=80",
   },
   {
     id: 4,
-    name: "Crème Mains Cèdre",
-    type: "Corps",
-    desc: "Protection quotidienne, absorption immédiate, parfum boisé.",
+    name: "Crème Mucine d'Escargot",
+    type: "Visage",
+    desc: "Réparation intense, peau rebondie et lissée.",
     price: "14 500 FCFA",
     img: "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=900&q=80",
   },
   {
     id: 5,
-    name: "Tonique Rose Pure",
+    name: "Toner Acide Hyaluronique",
     type: "Visage",
-    desc: "Brume hydratante à la rose de Damas, fraîcheur instantanée.",
+    desc: "Lotion hydratante repulpante, fraîcheur instantanée.",
     price: "21 000 FCFA",
     img: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=900&q=80",
   },
   {
     id: 6,
-    name: "Gommage Sel & Menthe",
-    type: "Corps",
-    desc: "Exfoliant minéral revitalisant, peau douce et tonifiée.",
+    name: "Masque Thé Vert Purifiant",
+    type: "Visage",
+    desc: "Masque purifiant à l'argile et thé vert, pores resserrés.",
     price: "18 500 FCFA",
     img: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=900&q=80",
   },
@@ -93,10 +93,10 @@ const NEW_PRODUCTS = [
 
 // Best-sellers
 const BEST_SELLERS = [
-  { id: "b1", name: "Sérum Équilibrant", type: "Visage", price: "29 000 FCFA", img: "1556228720-195a672e8a03" },
-  { id: "b2", name: "Tonique Rose Pure", type: "Visage", price: "21 000 FCFA", img: "1620916566398-39f1143ab7be" },
-  { id: "b3", name: "Baume Corps Néroli", type: "Corps", price: "24 000 FCFA", img: "1556228578-8c89e6adf883" },
-  { id: "b4", name: "Gommage Sel & Menthe", type: "Corps", price: "18 500 FCFA", img: "1612817288484-6f916006741a" },
+  { id: "b1", name: "Sérum Centella Apaisant", type: "Visage", price: "29 000 FCFA", img: "1556228720-195a672e8a03" },
+  { id: "b2", name: "Toner Acide Hyaluronique", type: "Visage", price: "21 000 FCFA", img: "1620916566398-39f1143ab7be" },
+  { id: "b3", name: "Crème Riz Fermenté", type: "Visage", price: "24 000 FCFA", img: "1556228578-8c89e6adf883" },
+  { id: "b4", name: "Masque Thé Vert Purifiant", type: "Visage", price: "18 500 FCFA", img: "1612817288484-6f916006741a" },
 ];
 
 // Marques partenaires (modèle hybride)
@@ -106,13 +106,13 @@ const PARTNER_BRANDS = ["Hanbit", "Seoul Dew", "Pure Seoul", "Goyo", "Hanok", "D
 const REVIEWS = [
   { name: "Aïssata D.", city: "Bamako", text: "Une qualité que je n'avais jamais trouvée localement. Le sérum a transformé ma peau en quelques semaines." },
   { name: "Fanta K.", city: "Bamako", text: "Conseil parfait via WhatsApp, livraison rapide. L'expérience est aussi soignée que les produits." },
-  { name: "Mariam T.", city: "Kati", text: "J'adore la philosophie de la marque. Des soins simples, efficaces, avec de vraies matières." },
+  { name: "Mariam T.", city: "Kati", text: "J'adore la philosophie de la marque. Des soins simples, efficaces, avec de vrais actifs coréens." },
 ];
 
 // Journal / articles
 const ARTICLES = [
   { title: "Construire sa routine en 4 gestes", cat: "Conseils", img: "1556228578-8c89e6adf883" },
-  { title: "Le néroli, fleur d'exception", cat: "Ingrédients", img: "1620916566398-39f1143ab7be" },
+  { title: "La mucine d'escargot, secret coréen", cat: "Ingrédients", img: "1620916566398-39f1143ab7be" },
   { title: "Adopter le rituel du soir", cat: "Rituels", img: "1556228720-195a672e8a03" },
 ];
 
@@ -187,9 +187,9 @@ const NAV = [
   },
   {
     label: "Marques",
-    sub: ["Mira", "Marques partenaires", "Nouveautés", "Best-sellers"],
+    sub: ["Myra", "Marques partenaires", "Nouveautés", "Best-sellers"],
     feature: [
-      { title: "La marque Mira", img: "1556228578-8c89e6adf883" },
+      { title: "La marque Myra", img: "1556228578-8c89e6adf883" },
       { title: "Nouveautés", img: "1580870069867-74c57ee1bb07" },
     ],
   },
@@ -278,44 +278,55 @@ function NavItem({ item, alignRight }) {
 
 function Header({ onMenu, solid }) {
   return (
-    <header
-      style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: solid ? "14px 40px" : "22px 40px",
-        background: solid ? "rgba(250,248,244,0.92)" : "transparent",
-        backdropFilter: solid ? "blur(10px)" : "none",
-        borderBottom: solid ? `1px solid ${C.line}` : "1px solid transparent",
-        transition: "all .5s ease",
-      }}
-    >
-      {/* LOGO À GAUCHE — remplaçable par votre image de logo */}
-      <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50 }}>
+      {/* TOP BAR — nom de la marque bien centré (façon Cosmeticary) */}
+      <div style={{
+        background: C.ink, color: C.cream, textAlign: "center",
+        padding: solid ? "7px 0" : "9px 0", transition: "padding .4s ease",
+      }}>
         <span style={{
-          fontFamily: SERIF, fontSize: 25, fontWeight: 500, color: C.ink,
-          letterSpacing: "0.04em",
-        }}>Mira</span>
-        <span style={{
-          fontFamily: SANS, fontSize: 8, letterSpacing: "0.34em",
-          textTransform: "uppercase", color: C.grey, marginTop: 3,
-        }}>Skin Care</span>
+          fontFamily: SERIF, fontSize: solid ? 16 : 19, letterSpacing: "0.22em",
+          textTransform: "uppercase", transition: "font-size .4s ease",
+        }}>Myra Skin Care</span>
       </div>
 
-      {/* NAV MULTI-VOLETS — desktop uniquement */}
-      <nav className="nav-desktop" style={{ display: "flex", gap: 30, alignItems: "center" }}>
-        {NAV.map((item, i) => <NavItem key={item.label} item={item} alignRight={i >= 3} />)}
-      </nav>
+      {/* BARRE PRINCIPALE */}
+      <header
+        style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: solid ? "12px 40px" : "18px 40px",
+          background: solid ? "rgba(250,248,244,0.95)" : "rgba(250,248,244,0.6)",
+          backdropFilter: "blur(10px)",
+          borderBottom: `1px solid ${solid ? C.line : "transparent"}`,
+          transition: "all .5s ease",
+        }}
+      >
+        {/* EMPLACEMENT LOGO À GAUCHE — à remplacer par votre image de logo */}
+        <div style={{
+          width: 120, height: 44, display: "flex", alignItems: "center",
+          justifyContent: "center", border: `1px dashed ${C.line}`,
+          fontFamily: SANS, fontSize: 9, letterSpacing: "0.14em",
+          color: C.grey, textTransform: "uppercase",
+        }}>
+          [ Logo ]
+        </div>
 
-      {/* BOUTON MENU — mobile uniquement */}
-      <button onClick={onMenu} className="nav-burger" style={{
-        background: "none", border: "none", cursor: "pointer",
-        fontFamily: SANS, fontSize: 11, letterSpacing: "0.18em",
-        textTransform: "uppercase", color: C.ink, display: "none",
-        alignItems: "center", gap: 8,
-      }}>
-        Menu&nbsp;&nbsp;☰
-      </button>
-    </header>
+        {/* NAV MULTI-VOLETS — desktop uniquement */}
+        <nav className="nav-desktop" style={{ display: "flex", gap: 30, alignItems: "center" }}>
+          {NAV.map((item, i) => <NavItem key={item.label} item={item} alignRight={i >= 3} />)}
+        </nav>
+
+        {/* BOUTON MENU — mobile uniquement */}
+        <button onClick={onMenu} className="nav-burger" style={{
+          background: "none", border: "none", cursor: "pointer",
+          fontFamily: SANS, fontSize: 11, letterSpacing: "0.18em",
+          textTransform: "uppercase", color: C.ink, display: "none",
+          alignItems: "center", gap: 8,
+        }}>
+          Menu&nbsp;&nbsp;☰
+        </button>
+      </header>
+    </div>
   );
 }
 
@@ -418,7 +429,7 @@ function Hero() {
     <section style={{
       position: "relative", height: "100vh", minHeight: 620,
       display: "flex", alignItems: "center", justifyContent: "center",
-      overflow: "hidden", background: C.cream,
+      overflow: "hidden", background: C.cream, paddingTop: 90,
     }}>
       {/* Vignettes d'arrière-plan inclinées */}
       <div className="hero-tiles" style={{ position: "absolute", inset: 0 }}>
@@ -667,7 +678,7 @@ function Editorial() {
             fontFamily: BODY, fontSize: 17, lineHeight: 1.7, color: "#C9C4BA",
             maxWidth: 440, marginBottom: 24,
           }}>
-            Mira Skin Care est une boutique spécialisée dans les soins coréens (K-Beauty) :
+            Myra Skin Care est une boutique spécialisée dans les soins coréens (K-Beauty) :
             nettoyants, sérums, crèmes hydratantes, masques, protections solaires et
             traitements ciblés, formulés avec des ingrédients innovants.
           </p>
@@ -812,52 +823,99 @@ function Footer() {
     <footer style={{ background: C.cream, borderTop: `1px solid ${C.line}`, padding: "70px 40px 40px" }}>
       <div style={{
         maxWidth: 1200, margin: "0 auto",
-        display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 40,
+        display: "grid", gridTemplateColumns: "1.4fr 1fr 1.2fr", gap: 50,
       }} className="footer-grid">
+
+        {/* À PROPOS */}
         <div>
-          <div style={{ marginBottom: 20, lineHeight: 1 }}>
+          <div style={{ marginBottom: 18, lineHeight: 1 }}>
             <span style={{
               fontFamily: SERIF, fontSize: 28, fontWeight: 500, color: C.ink,
               letterSpacing: "0.04em",
-            }}>Mira</span>
+            }}>Myra</span>
             <span style={{
               fontFamily: SANS, fontSize: 9, letterSpacing: "0.34em",
               textTransform: "uppercase", color: C.grey, marginLeft: 10,
             }}>Skin Care</span>
           </div>
           <p style={{
-            fontFamily: BODY, fontSize: 15, lineHeight: 1.6, color: C.grey, maxWidth: 280,
-          }}>La beauté coréenne au service de votre éclat naturel. Bamako, Mali.</p>
-        </div>
-        {[
-          { h: "Boutique", l: ["Visage", "Corps", "Cheveux"] },
-          { h: "Maison", l: ["Notre histoire", "Ingrédients", "Contact"] },
-          { h: "Suivez-nous", l: ["Instagram", "WhatsApp", "Newsletter"] },
-        ].map((col) => (
-          <div key={col.h}>
-            <p style={{
-              fontFamily: SANS, fontSize: 10, letterSpacing: "0.2em",
-              textTransform: "uppercase", color: C.ink, marginBottom: 18,
-            }}>{col.h}</p>
-            {col.l.map((x) => (
-              <a key={x} href="#" style={{
-                display: "block", fontFamily: BODY, fontSize: 15, color: C.grey,
-                textDecoration: "none", marginBottom: 10,
-              }}>{x}</a>
+            fontFamily: SANS, fontSize: 10, letterSpacing: "0.2em",
+            textTransform: "uppercase", color: C.gold, marginBottom: 14,
+          }}>À propos</p>
+          <p style={{
+            fontFamily: BODY, fontSize: 15, lineHeight: 1.65, color: C.grey, maxWidth: 330, marginBottom: 16,
+          }}>
+            Myra Skin Care, c'est votre destination beauté dédiée aux soins coréens
+            authentiques. Notre mission : vous offrir des produits efficaces,
+            sélectionnés avec soin pour révéler l'éclat naturel de votre peau.
+          </p>
+          <p style={{ fontFamily: BODY, fontSize: 15, color: C.ink, marginBottom: 6 }}>Bamako, Mali</p>
+          <a href="mailto:skincaremyra97@gmail.com" style={{
+            fontFamily: BODY, fontSize: 15, color: C.ink, textDecoration: "none",
+            borderBottom: `1px solid ${C.gold}`, paddingBottom: 1,
+          }}>skincaremyra97@gmail.com</a>
+          <div style={{ display: "flex", gap: 18, marginTop: 22 }}>
+            {["Instagram", "TikTok", "WhatsApp"].map((s) => (
+              <a key={s} href="#" style={{
+                fontFamily: SANS, fontSize: 10, letterSpacing: "0.14em",
+                textTransform: "uppercase", color: C.grey, textDecoration: "none",
+              }}>{s}</a>
             ))}
           </div>
-        ))}
+        </div>
+
+        {/* INFOS */}
+        <div>
+          <p style={{
+            fontFamily: SANS, fontSize: 10, letterSpacing: "0.2em",
+            textTransform: "uppercase", color: C.ink, marginBottom: 18,
+          }}>Infos</p>
+          {[
+            "Conditions Générales de Vente",
+            "Mentions Légales",
+            "Expéditions et Livraisons",
+            "Politique de Retour",
+            "Politique de Confidentialité",
+          ].map((x) => (
+            <a key={x} href="#" style={{
+              display: "block", fontFamily: BODY, fontSize: 15, color: C.grey,
+              textDecoration: "none", marginBottom: 11,
+            }}>{x}</a>
+          ))}
+        </div>
+
+        {/* NEWSLETTER */}
+        <div>
+          <p style={{
+            fontFamily: SANS, fontSize: 10, letterSpacing: "0.2em",
+            textTransform: "uppercase", color: C.ink, marginBottom: 18,
+          }}>Newsletter</p>
+          <p style={{
+            fontFamily: BODY, fontSize: 15, lineHeight: 1.6, color: C.grey, marginBottom: 22,
+          }}>
+            Inscrivez-vous pour recevoir nos conseils skincare, découvrir nos
+            nouveautés coréennes et profiter d'offres exclusives.
+          </p>
+          <div style={{ display: "flex", borderBottom: `1px solid ${C.line}`, paddingBottom: 6, marginBottom: 18 }}>
+            <input placeholder="Votre adresse e-mail" style={{
+              flex: 1, border: "none", outline: "none", background: "transparent",
+              fontFamily: BODY, fontSize: 15, color: C.ink, padding: "6px 0",
+            }} />
+          </div>
+          <Button variant="solid">S'inscrire</Button>
+        </div>
       </div>
+
       <div style={{
         maxWidth: 1200, margin: "50px auto 0", paddingTop: 24,
         borderTop: `1px solid ${C.line}`, display: "flex",
         justifyContent: "space-between", flexWrap: "wrap", gap: 12,
       }}>
         <span style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.1em", color: C.grey }}>
-          © 2026 Mira Skin Care — Tous droits réservés
+          © 2026 Myra Skin Care — Tous droits réservés
         </span>
         <span style={{ fontFamily: SANS, fontSize: 11, letterSpacing: "0.1em", color: C.grey }}>
-          Mentions légales · Confidentialité
+          La beauté coréenne au service de votre éclat naturel.
         </span>
       </div>
     </footer>
@@ -1367,6 +1425,49 @@ function NewsletterBand() {
   );
 }
 
+// Section À PROPOS (texte fourni par la cliente)
+function About() {
+  return (
+    <section style={{ padding: "110px 40px", background: C.white }}>
+      <Reveal>
+        <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+          <p style={{
+            fontFamily: SANS, fontSize: 11, letterSpacing: "0.3em",
+            textTransform: "uppercase", color: C.gold, marginBottom: 22,
+          }}>À propos</p>
+          <h2 style={{
+            fontFamily: SERIF, fontSize: "clamp(28px,4vw,44px)", fontWeight: 500,
+            color: C.ink, lineHeight: 1.2, margin: "0 0 28px",
+          }}>
+            Votre destination beauté,<br />
+            <span style={{ fontStyle: "italic" }}>dédiée aux soins coréens</span>
+          </h2>
+          <p style={{
+            fontFamily: BODY, fontSize: 18, lineHeight: 1.75, color: C.grey, marginBottom: 22,
+          }}>
+            Myra Skin Care, c'est votre destination beauté dédiée aux soins coréens
+            authentiques. Notre mission est de vous offrir des produits efficaces,
+            sélectionnés avec soin pour révéler l'éclat naturel de votre peau et vous
+            accompagner vers une routine adaptée à vos besoins.
+          </p>
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 14, marginTop: 8,
+            fontFamily: SANS, fontSize: 11, letterSpacing: "0.16em",
+            textTransform: "uppercase", color: C.ink,
+          }}>
+            <span>Bamako, Mali</span>
+            <span style={{ color: C.gold }}>✦</span>
+            <a href="mailto:skincaremyra97@gmail.com" style={{
+              color: C.ink, textDecoration: "none", borderBottom: `1px solid ${C.gold}`, paddingBottom: 2,
+              textTransform: "none", letterSpacing: "0.02em", fontSize: 14, fontFamily: BODY,
+            }}>skincaremyra97@gmail.com</a>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
 // ============================================================
 //  MODALE CENTRALE (sobre)
 // ============================================================
@@ -1410,7 +1511,7 @@ function CenterModal({ open, onClose }) {
           fontFamily: BODY, fontSize: 16, lineHeight: 1.6, color: C.grey,
           margin: "0 0 28px", maxWidth: 340, marginLeft: "auto", marginRight: "auto",
         }}>
-          Recevez les nouveautés et conseils de soin de Mira Skin Care, avec discrétion.
+          Recevez les nouveautés et conseils de soin de Myra Skin Care, avec discrétion.
         </p>
         <div style={{
           display: "flex", borderBottom: `1px solid ${C.line}`,
@@ -1476,9 +1577,9 @@ export default function App() {
       <BestSellers />
       <PartnerBrands />
       <Reviews />
+      <About />
       <Journal />
       <ComponentCatalog onModal={() => setModalOpen(true)} />
-      <NewsletterBand />
 
       <Footer />
       <ProductModal product={product} onClose={() => setProduct(null)} />
