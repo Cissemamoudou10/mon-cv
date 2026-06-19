@@ -164,6 +164,7 @@ function Reveal({ children, delay = 0, style = {} }) {
 // Structure de navigation à plusieurs volets, avec sous-menus illustrés (mega-menu).
 // Chaque volet peut porter des vignettes "feature" illustrant une entrée.
 const NAV = [
+  { label: "Nouveautés", sub: null },
   {
     label: "Préoccupations",
     sub: ["Hydratation & confort", "Éclat & teint terne", "Imperfections & pores", "Anti-âge", "Sensibilité & rougeurs", "Soin du regard"],
@@ -173,13 +174,22 @@ const NAV = [
     ],
   },
   {
-    label: "Soins",
-    sub: ["Nettoyants", "Toniques & brumes", "Sérums & ampoules", "Crèmes & hydratants", "Exfoliants & masques", "Solaires"],
+    label: "Visage",
+    sub: ["Nettoyants", "Toniques & brumes", "Sérums & ampoules", "Crèmes & hydratants", "Exfoliants & masques", "Protections solaires"],
     feature: [
       { title: "Sérums & ampoules", img: "1608248543803-ba4f8c70ae0b" },
       { title: "Crèmes & hydratants", img: "1571781926291-c477ebfd024b" },
     ],
   },
+  {
+    label: "Marques",
+    sub: ["Myra", "Marques partenaires", "Best-sellers"],
+    feature: [
+      { title: "La marque Myra", img: "1556228578-8c89e6adf883" },
+      { title: "Nos partenaires", img: "1580870069867-74c57ee1bb07" },
+    ],
+  },
+  { label: "Compléments", sub: null },
   {
     label: "Corps & Cheveux",
     sub: ["Gels & gommages corps", "Laits & crèmes corps", "Mains & pieds", "Shampoings & soins", "Huiles capillaires"],
@@ -188,16 +198,9 @@ const NAV = [
       { title: "Huiles capillaires", img: "1612817288484-6f916006741a" },
     ],
   },
-  {
-    label: "Marques",
-    sub: ["Myra", "Marques partenaires", "Nouveautés", "Best-sellers"],
-    feature: [
-      { title: "La marque Myra", img: "1556228578-8c89e6adf883" },
-      { title: "Nouveautés", img: "1580870069867-74c57ee1bb07" },
-    ],
-  },
-  { label: "Histoire", sub: null },
-  { label: "Contact", sub: null },
+  { label: "K-Beauty", sub: null },
+  { label: "Nos kits", sub: null },
+  { label: "Ingrédients", sub: null },
 ];
 
 function NavItem({ item, alignRight }) {
@@ -366,8 +369,8 @@ function Header({ onMenu, onSearch, onCart, cartCount = 0, solid }) {
         </div>
 
         {/* NAV MULTI-VOLETS — desktop uniquement, au centre */}
-        <nav className="nav-desktop" style={{ display: "flex", gap: 30, alignItems: "center" }}>
-          {NAV.map((item, i) => <NavItem key={item.label} item={item} alignRight={i >= 3} />)}
+        <nav className="nav-desktop" style={{ display: "flex", gap: 20, alignItems: "center" }}>
+          {NAV.map((item, i) => <NavItem key={item.label} item={item} alignRight={i >= 6} />)}
         </nav>
 
         {/* ZONE DROITE : panier */}
@@ -1644,7 +1647,7 @@ export default function App() {
         * { box-sizing: border-box; margin: 0; }
         body { margin: 0; }
         ::selection { background: ${C.gold}; color: ${C.cream}; }
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .nav-desktop { display: none !important; }
           .nav-burger { display: inline-flex !important; }
           .search-desktop { display: none !important; }
