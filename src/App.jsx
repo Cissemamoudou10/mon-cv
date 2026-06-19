@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // ============================================================
 //  PALETTE & TOKENS  (esprit Aesop : noir / blanc cassé / doré sobre)
@@ -279,7 +279,7 @@ function NavItem({ item, alignRight }) {
   );
 }
 
-function Header({ onMenu, solid }) {
+function Header({ onMenu, onSearch, onCart, cartCount = 0, solid }) {
   return (
     <div style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 50 }}>
       {/* TOP BAR — nom de la marque bien centré (façon Cosmeticary) */}
@@ -296,6 +296,7 @@ function Header({ onMenu, solid }) {
       {/* BARRE PRINCIPALE */}
       <header
         style={{
+          position: "relative",
           display: "flex", alignItems: "center", justifyContent: "space-between",
           padding: solid ? "12px 40px" : "18px 40px",
           background: solid ? "rgba(250,248,244,0.95)" : "rgba(250,248,244,0.6)",
@@ -304,32 +305,94 @@ function Header({ onMenu, solid }) {
           transition: "all .5s ease",
         }}
       >
-        {/* LOGO À GAUCHE */}
-        <a href="#" style={{ display: "block", lineHeight: 0 }}>
-          <img
-            src="/logo-myra-hd.png"
-            alt="Myra Skin Care"
-            style={{
-              height: solid ? 46 : 54, width: "auto", display: "block",
-              transition: "height .4s ease",
-            }}
-          />
-        </a>
+        {/* ZONE GAUCHE : burger (mobile) + logo + recherche */}
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          {/* BOUTON MENU — mobile uniquement, à gauche */}
+          <button onClick={onMenu} className="nav-burger" aria-label="Menu" style={{
+            background: "none", border: "none", cursor: "pointer",
+            color: C.ink, display: "none", alignItems: "center", padding: 0,
+          }}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="1.4" strokeLinecap="round">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
 
-        {/* NAV MULTI-VOLETS — desktop uniquement */}
+          {/* LOGO */}
+          <a href="#" className="header-logo" style={{ display: "block", lineHeight: 0 }}>
+            <img
+              src={LOGO_MYRA}
+              alt="Myra Skin Care"
+              style={{
+                height: solid ? 46 : 54, width: "auto", display: "block",
+                transition: "height .4s ease",
+              }}
+            />
+          </a>
+
+          {/* CHAMP DE RECHERCHE — desktop : champ complet après le logo */}
+          <div className="search-desktop" style={{
+            display: "flex", alignItems: "center", gap: 9,
+            borderBottom: `1px solid ${C.line}`, paddingBottom: 5, width: 190,
+            transition: "border-color .3s ease, width .3s ease",
+          }}>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+              stroke={C.grey} strokeWidth="1.6" strokeLinecap="round" style={{ flexShrink: 0 }}>
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.5" y2="16.5" />
+            </svg>
+            <input
+              placeholder="Rechercher un soin…"
+              style={{
+                flex: 1, border: "none", outline: "none", background: "transparent",
+                fontFamily: BODY, fontSize: 15, color: C.ink, minWidth: 0,
+              }}
+            />
+          </div>
+
+          {/* ICÔNE RECHERCHE — mobile uniquement */}
+          <button onClick={onSearch} className="search-mobile" aria-label="Rechercher" style={{
+            background: "none", border: "none", cursor: "pointer",
+            color: C.ink, display: "none", alignItems: "center", padding: 0,
+          }}>
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="21" y1="21" x2="16.5" y2="16.5" />
+            </svg>
+          </button>
+        </div>
+
+        {/* NAV MULTI-VOLETS — desktop uniquement, au centre */}
         <nav className="nav-desktop" style={{ display: "flex", gap: 30, alignItems: "center" }}>
           {NAV.map((item, i) => <NavItem key={item.label} item={item} alignRight={i >= 3} />)}
         </nav>
 
-        {/* BOUTON MENU — mobile uniquement */}
-        <button onClick={onMenu} className="nav-burger" style={{
-          background: "none", border: "none", cursor: "pointer",
-          fontFamily: SANS, fontSize: 11, letterSpacing: "0.18em",
-          textTransform: "uppercase", color: C.ink, display: "none",
-          alignItems: "center", gap: 8,
-        }}>
-          Menu&nbsp;&nbsp;☰
-        </button>
+        {/* ZONE DROITE : panier */}
+        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+          <button onClick={onCart} aria-label="Panier" style={{
+            background: "none", border: "none", cursor: "pointer",
+            color: C.ink, display: "inline-flex", alignItems: "center",
+            padding: 0, position: "relative",
+          }}>
+            <svg width="23" height="23" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 2 L3 6 v13 a1 1 0 0 0 1 1 h16 a1 1 0 0 0 1 -1 V6 L18 2 Z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10 a4 4 0 0 1 -8 0" />
+            </svg>
+            {cartCount > 0 && (
+              <span style={{
+                position: "absolute", top: -7, right: -9,
+                background: C.gold, color: C.cream, borderRadius: "50%",
+                width: 16, height: 16, fontSize: 9, fontFamily: SANS,
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>{cartCount}</span>
+            )}
+          </button>
+        </div>
       </header>
     </div>
   );
@@ -349,18 +412,18 @@ function SidePanel({ open, onClose }) {
         transition: "opacity .5s ease",
       }} />
       <aside style={{
-        position: "fixed", top: 0, right: 0, bottom: 0, width: 360, maxWidth: "85vw",
+        position: "fixed", top: 0, left: 0, bottom: 0, width: 360, maxWidth: "85vw",
         zIndex: 70, background: C.cream, padding: "32px 30px",
-        transform: open ? "translateX(0)" : "translateX(100%)",
+        transform: open ? "translateX(0)" : "translateX(-100%)",
         transition: "transform .55s cubic-bezier(.4,0,.2,1)",
         display: "flex", flexDirection: "column", overflowY: "auto",
       }}>
         <button onClick={onClose} style={{
-          alignSelf: "flex-end", background: "none", border: "none",
+          alignSelf: "flex-start", background: "none", border: "none",
           cursor: "pointer", fontFamily: SANS, fontSize: 11,
           letterSpacing: "0.18em", textTransform: "uppercase", color: C.ink,
           marginBottom: 40,
-        }}>Fermer&nbsp;&nbsp;✕</button>
+        }}>✕&nbsp;&nbsp;Fermer</button>
 
         <nav style={{ display: "flex", flexDirection: "column" }}>
           {NAV.map((item, i) => {
@@ -486,32 +549,58 @@ function Hero() {
 }
 
 // ============================================================
-//  BANDEROLE DÉFILANTE (marquee)
+//  BANDEROLE DÉFILANTE (marquee) — transparente, 2 lignes, pause au survol
 // ============================================================
 function Marquee() {
-  const items = [...MARQUEE, ...MARQUEE];
-  return (
-    <div style={{
-      background: C.ink, color: C.cream, padding: "20px 0",
-      overflow: "hidden", whiteSpace: "nowrap",
-    }}>
-      <div style={{
-        display: "inline-flex", animation: "scroll 38s linear infinite",
-      }}>
+  const line1 = [...MARQUEE, ...MARQUEE];
+  const line2 = [...MARQUEE].reverse();
+  const doubled2 = [...line2, ...line2];
+
+  const Row = ({ items, dir }) => (
+    <div style={{ overflow: "hidden", whiteSpace: "nowrap" }}>
+      <div
+        className="marquee-track"
+        style={{
+          display: "inline-flex",
+          animation: `${dir === "rtl" ? "scrollRev" : "scroll"} 42s linear infinite`,
+        }}
+      >
         {items.map((w, i) => (
           <span key={i} style={{
-            fontFamily: SERIF, fontSize: 26, fontStyle: "italic",
-            padding: "0 38px", display: "inline-flex", alignItems: "center",
+            fontFamily: SERIF, fontSize: 24, fontStyle: "italic",
+            padding: "0 34px", display: "inline-flex", alignItems: "center",
+            color: C.ink,
           }}>
             {w}
-            <span style={{ color: C.gold, marginLeft: 38, fontSize: 14 }}>✦</span>
+            <span style={{ color: C.gold, marginLeft: 34, fontSize: 13 }}>✦</span>
           </span>
         ))}
       </div>
+    </div>
+  );
+
+  return (
+    <div
+      className="marquee-wrap"
+      style={{
+        background: "transparent", padding: "26px 0",
+        borderTop: `1px solid ${C.line}`, borderBottom: `1px solid ${C.line}`,
+        display: "flex", flexDirection: "column", gap: 14,
+      }}
+    >
+      <Row items={line1} dir="ltr" />
+      <Row items={doubled2} dir="rtl" />
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        @keyframes scrollRev {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .marquee-wrap:hover .marquee-track {
+          animation-play-state: paused;
         }
       `}</style>
     </div>
@@ -1558,6 +1647,13 @@ export default function App() {
         @media (max-width: 1024px) {
           .nav-desktop { display: none !important; }
           .nav-burger { display: inline-flex !important; }
+          .search-desktop { display: none !important; }
+          .search-mobile { display: inline-flex !important; }
+          .header-logo {
+            position: absolute !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+          }
         }
         @media (max-width: 860px) {
           .editorial { grid-template-columns: 1fr !important; }
@@ -1570,7 +1666,13 @@ export default function App() {
         }
       `}</style>
 
-      <Header onMenu={() => setMenu(true)} solid={solid} />
+      <Header
+        onMenu={() => setMenu(true)}
+        onSearch={() => setModalOpen(true)}
+        onCart={() => setModalOpen(true)}
+        cartCount={2}
+        solid={solid}
+      />
       <SidePanel open={menu} onClose={() => setMenu(false)} />
       <Hero />
       <Marquee />
